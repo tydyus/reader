@@ -20,40 +20,41 @@ export default async function handler(
   
   if (req.method === 'POST'){
     return new Promise<void>(async (resolve, reject) => {
-    const data: Data = req.body;
-    const {name,psw} = data;
+      const data: Data = req.body;
+      const {name,psw} = data;
 
-    const uid = (Math.random() * 10000).toString();;
-    const pswEncrypted = Crypto.encrypt(psw);
+      const uid = (Math.random() * 10000).toString();;
+      const pswEncrypted = Crypto.encrypt(psw);
 
-    console.log("debug");
-    try {
-      Dbo.Init(); 
-      await Dbo.connect("users", async ()=>{
-        try{
-        await Dbo.add(
-          {
-            name:name, 
-            uid:uid, 
-            psw:pswEncrypted,
-            tokenId:"",
-            token:"",
-            tokenDate: 0,
-          }
-        )
-        .then(_ => {
-          res.status(201).json({message:"user add"});
-          resolve();
-        })
-        .catch(err => console.error(err));
-        }catch (error){console.error(error)}
-      }).catch(err => console.error(err));
-      
-    } catch (error) {
-      res.status(500).json({message:(error as string)})
-      return resolve();
-    }
-  });}
+      console.log("debug");
+      try {
+        Dbo.Init(); 
+        await Dbo.connect("users", async ()=>{
+          try{
+          await Dbo.add(
+            {
+              name:name, 
+              uid:uid, 
+              psw:pswEncrypted,
+              tokenId:"",
+              token:"",
+              tokenDate: 0,
+            }
+          )
+          .then(_ => {
+            res.status(201).json({message:"user add"});
+            resolve();
+          })
+          .catch(err => console.error(err));
+          }catch (error){console.error(error)}
+        }).catch(err => console.error(err));
+        
+      } catch (error) {
+        res.status(500).json({message:(error as string)})
+        return resolve();
+      }
+    });
+  }
   
 }
 
