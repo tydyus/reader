@@ -1,0 +1,76 @@
+@mixin burger($bg,$bgSecondaire,$text,$textSecondaire) {
+    .navGlobal{
+        z-index: 10;
+        background-color: $text;
+        *{color: $bg;}
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        .NavBurgercheckbox, .NavBurgercheckboxDeco{
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 2px;
+            padding: 0;
+            height: 12px;
+            width: 12px;
+            border-radius: 100%;
+        }
+        .NavBurgercheckboxDeco{
+            background-color: $bg;
+            border: 2px solid $bg;
+        }
+        .burgerWrapper{
+            margin: 0;
+            position: fixed;
+            background-color: $text;
+            top: calc(10vh - 30px);
+            right: 0vw;
+            height: 80vh;
+            width: 0vw;
+            border-radius: 20px;
+            transition-duration: 1s, 1s, 1s;
+            transition-property: width, right, padding;
+            > *{display: none;}
+        }
+        .NavBurgercheckbox{
+            opacity: 0;
+            z-index: 11;
+            &:checked ~ {
+                .NavBurgercheckboxDeco {
+                    background-color: $text;
+                }
+                .burgerWrapper{
+                    > *{display: inline-block;}
+                    width: 80vw;
+                    right: calc(10vw - 30px);
+                    padding: 30px;
+                }
+            }
+        }
+        .link, .log{
+            a{
+                display: block;
+                margin: 10px;
+                padding: 5px;
+                border-radius: calc(10px + 1em);
+                background-color: $textSecondaire;
+                color: $bg;
+                border:2px solid $textSecondaire;
+                text-decoration: none;
+                &:hover{
+                    background-color: $text;
+                    color: $bg;
+                    border:2px solid $bg;
+                }
+            }
+        }
+        .log{
+            border-left: 2px solid $bg;
+            padding-left: 10px;
+        }
+        
+    }
+}

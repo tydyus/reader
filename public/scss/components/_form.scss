@@ -1,0 +1,20 @@
+@mixin form($bg,$bgSecondaire,$text,$textSecondaire) {
+    .btn{
+        cursor: pointer;
+        display: inline-block;
+        border:$bg 1px solid;
+        margin:3px;
+        padding:3px;
+        border-radius: 3px;
+        background: $text;
+        &:hover{background-color: $bg;color:$text}
+    }
+    input{
+        background: $text;
+        &:hover{background-color: $bg;color:$text}
+        border:$bg 1px solid;
+        margin:3px;
+        padding:3px;
+        border-radius: 3px;
+    }
+}

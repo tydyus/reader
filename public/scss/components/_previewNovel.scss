@@ -1,0 +1,24 @@
+@mixin previewNovel($bg,$bgSecondaire,$text,$textSecondaire) {
+    .novelPreview .content{
+        .card{
+            .cover, span{background-color: $bg;}
+        }
+    }
+}
+
+.novelPreview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    > .content{
+    .card{
+        display: inline-block;
+        width: 20%;
+        min-width: 100px;
+        *{border-radius: 5px;}
+        margin:2%;
+        height: 100px;
+        .cover{height: 40px;}
+        span{height: 10px; width: 100% ;display: block; margin-top: 10px;}
+    }
+}}
