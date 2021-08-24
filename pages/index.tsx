@@ -6,9 +6,6 @@ import {VignetteNovel} from "../components/novel/vignette.view";
 const Home: NextPage = () => {
   return (
       <Fragment>
-        
-        <div className="container">
-          
           <div className="trending novelPreview">
             <h2>Trending</h2>
             <div className="content">
@@ -27,7 +24,6 @@ const Home: NextPage = () => {
               <VignetteNovel iteration={8} id={'newChapterNovel'} />
             </div>
           </div>
-        </div>
       </Fragment>
   )
 }

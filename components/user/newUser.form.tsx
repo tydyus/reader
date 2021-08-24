@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {User} from "../../class/User.class"
 
 interface Props {}
@@ -16,13 +16,6 @@ const NewUser:React.FC<Props> = props =>{
         }
     }
 
-    useEffect(() => {
-        const actuelNode = (document.getElementById("formNewUserSubmit") as HTMLElement);
-        const cloneCleanEvent = actuelNode.cloneNode(true);
-        (actuelNode.parentNode as HTMLElement).replaceChild(cloneCleanEvent, actuelNode);
-        cloneCleanEvent
-            .addEventListener("click", ()=>{submitForm()});
-      }, []);
 
     return (
         <div className="profilPage">
@@ -31,7 +24,7 @@ const NewUser:React.FC<Props> = props =>{
                 <input type="text" name="name" className="form" id="formNewUserName" placeholder="name"/>
                 <input type="password" name="psw" className="form" id="formNewUserPsw" placeholder="password"/>
                 {err == ""?"":`<p class="form">${err}<p>`}
-                <div className="btn" id="formNewUserSubmit">NewUser</div>
+                <div className="btn" id="formNewUserSubmit" onClick={()=>submitForm()}>NewUser</div>
             </form>
         </div>
     )

@@ -33,8 +33,9 @@ const Layout:React.FC<Props> = props =>{
             </Head>
             
             <main>
-                
+                <div className="container">
                 {props.children}
+                </div>
             </main>
 
             <Footer />

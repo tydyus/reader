@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {User} from "../../class/User.class"
 
 interface Props { majUser:Function}
@@ -18,21 +18,14 @@ const LogIn:React.FC<Props> = props =>{
         props.majUser();
     }
 
-    useEffect(() => {
-        const actuelNode = (document.getElementById("formLogInSubmit") as HTMLElement);
-        const cloneCleanEvent = actuelNode.cloneNode(true);
-        (actuelNode.parentNode as HTMLElement).replaceChild(cloneCleanEvent, actuelNode);
-        cloneCleanEvent
-            .addEventListener("click", ()=>{submitForm()});
-      });
 
     return (
         <div className="profilPage">
             <h1>LogIn</h1>
-            <form action="">
+            <form onSubmit={()=>{submitForm()}}>
                 <input type="text" name="" id="formLogInName" placeholder="name"/>
                 <input type="password" name="" id="formLogInPsw" placeholder="password"/>
-                <div className="btn" id="formLogInSubmit">LogIn</div>
+                <div className="btn" id="formLogInSubmit" onClick={() => submitForm()}>LogIn</div>
             </form>
         </div>
     )
