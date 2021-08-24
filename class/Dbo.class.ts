@@ -45,6 +45,31 @@ export class Dbo{
         } catch (error) {console.error(error)}
         return objs;
     }
+    public static async getById<T> (id:string|Array<string>){
+        interface Obj<T>  {key:string,value:T};
+        let objs:Array<Obj<T>>|false = false;
+        let obj:Obj<T>|false = false;
+        if (typeof(id) == "string"){
+            const sObj = (Dbo.collection instanceof firebase.firestore.CollectionReference) && (await Dbo.collection.doc(id).get()).data();
+            typeof(sObj) != "undefined"
+            && sObj.valueOf() 
+            && (obj = {key:id,value:(sObj as unknown as T)});
+            return obj;
+        }
+        else {
+            id.map(async i => {
+                const sObj = (Dbo.collection instanceof firebase.firestore.CollectionReference) && (await Dbo.collection.doc(i).get()).data();
+                typeof(sObj) != "undefined"
+                && sObj.valueOf() 
+                && objs == false && (objs = []); 
+                typeof(sObj) != "undefined"
+                && sObj.valueOf() 
+                && ((objs as Array<Obj<T>>).push({key:i,value:(sObj as unknown as T)}));
+            })
+            return objs;
+        }
+        
+    }
 
     public static async add(newObj:Object){
         

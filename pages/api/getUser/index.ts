@@ -31,17 +31,19 @@ export default async function handler(
           Dbo.Init(); 
           await Dbo.connect("users", async ()=>{
             try{
-            await Dbo.get()
-            .then(async (uS:Array<any>) => {
+            let errorCatch:string|false = false;
+            await Dbo.getById<IUser>(id)
+            .then(async user => {
               let goodUser:any = false;
-              uS.map(async user => {
-                if(
-                  user.key == id &&
-                  user.value.tokenId == tokenId &&
-                  user.value.token == token &&
-                  user.value.tokenDate > Date.now())
+              console.log(user);
+              if(
+                user &&
+                user.value.tokenId == tokenId &&
+                user.value.token == token &&
+                user.value.tokenDate > Date.now())
+                {
                   goodUser = user;
-              })
+                }
               if (goodUser != false)
               {
                 const newToken = User.buildToken(goodUser.value.name);
@@ -60,12 +62,16 @@ export default async function handler(
                   });
                 resolve();
               } else {
-                res.status(500).json({message:"token outdated"})
-                return resolve();
+                errorCatch="token outdated";
               }
             })
+            .catch(err => errorCatch="error get item")
             
-            .catch(err => console.error(err));
+            if (errorCatch){
+              console.log(`!ErrorCatchTokenUser: ${errorCatch}`);
+              res.status(500).json({message:errorCatch})
+                return resolve();
+            }
             }catch (error){console.error(error)}
           })
           .catch(err => console.error(err));
