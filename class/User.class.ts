@@ -17,6 +17,15 @@ export class User extends UserAuth{
         this.preference = new Preference();
     }
     public getName(){return this._name}
+
+    public static publicRead(user:IUser){
+        let userOnRead = user;
+        userOnRead.psw = "crypted";
+        userOnRead.token = "crypted";
+        userOnRead.tokenDate = 0;
+        userOnRead.tokenId = "crypted";
+        return userOnRead;
+    }
 }
 
 export interface IUser{
