@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {User} from "../../class/User.class"
 
-interface Props { majUser:Function}
+interface Props { majUser:Function, reverse:true|false}
 
 const LogIn:React.FC<Props> = props =>{
 
@@ -15,12 +15,16 @@ const LogIn:React.FC<Props> = props =>{
         } catch (error) {
             typeof error == "string" && setErr(error);
         }
-        props.majUser();
+        props.majUser()
+        // .then((_: any) =>
+        //     {
+        //         document.location.reload();
+        //     });
     }
 
 
     return (
-        <div className="profilPage">
+        <div className={props.reverse?"profilPage reverse":"profilPage"}>
             <h1>LogIn</h1>
             <form onSubmit={()=>{submitForm()}}>
                 <input type="text" name="" id="formLogInName" placeholder="name"/>
@@ -29,7 +33,7 @@ const LogIn:React.FC<Props> = props =>{
             </form>
         </div>
     )
-
+ 
 }
 
 export default LogIn;

@@ -1,4 +1,4 @@
-
+import {useRouter} from "next/router";
 import {Chapter, IChapter} from "./Chapter.class"
 import {CommentOwner, IComment} from "./Comment.class"
 
@@ -22,7 +22,8 @@ export class Novel extends CommentOwner{
         this._lastUpdate = lastUpdate;
     }
 
-    static async create(author:string, title:string,synopsys=""){
+    static async create(author:string, title:string,synopsys=""):Promise<string>{
+        let result = "error"
         const date = Date.now();
         const id = "";
         const axios = require('axios').default;
@@ -31,13 +32,16 @@ export class Novel extends CommentOwner{
         })
         .then((response:any) => {
             const newNovel = new Novel(author,title,response.data.novel.key,synopsys,date,date);
-            return newNovel;
+            console.log(response)
+            if (response["data"]["error"]) return response["error"];
+            
+            if (response["data"]["title"]) return title;
+            result = title;
         })
         .catch((error:any) => {
-            console.log(error);
-            return false;
+            result = error;
         });
-        
+        return result
     }
     
     getTitle(){return this._title}
@@ -54,6 +58,7 @@ export interface INovel{
     synopsys:string,
     date:number,
     lastUpdate:number,
-    chapters: Array<IChapter>
-    comments: Array<IComment>
+    chapters: Array<IChapter>,
+    comments: Array<IComment>,
+    public:boolean
 }

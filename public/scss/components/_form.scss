@@ -2,19 +2,30 @@
     .btn{
         cursor: pointer;
         display: inline-block;
-        border:$bg 1px solid;
-        margin:3px;
-        padding:3px;
-        border-radius: 3px;
-        background: $text;
-        &:hover{background-color: $bg;color:$text}
-    }
-    input{
-        background: $text;
-        &:hover{background-color: $bg;color:$text}
-        border:$bg 1px solid;
         margin:3px;
         padding:3px;
         border-radius: 3px;
     }
-}
+    input, textarea{
+        margin:3px;
+        padding:3px;
+        border-radius: 3px;
+    }
+    .btn, input, textarea{
+        border:$text 1px solid;
+        background: $bg;
+        &:hover{background-color: $text;color:$bg}
+    }
+    .reverse{
+        .btn, input, textarea{
+            border:$bg 1px solid;
+            background: $text;
+            &:hover{background-color: $bg;color:$text}
+        }
+    }
+    main form{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+} 

@@ -1,5 +1,5 @@
 
-import {IUser} from "../User.class";
+import {IUser, User} from "../User.class";
 
 export class UserAuth{
     private static connected: IUser|false = false;

@@ -39,7 +39,8 @@ export default async function handler(
         date: Date.now(),
         lastUpdate: Date.now(),
         chapters: [],
-        comments: []
+        comments: [],
+        public:false
       }
       Dbo.Init(); 
       await Dbo.connect("novels", async ()=>{

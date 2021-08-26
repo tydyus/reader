@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {User} from "../../class/User.class"
 
-interface Props {}
+interface Props {reverse:true|false}
 
 const NewUser:React.FC<Props> = props =>{
     const [err, setErr] = useState("");
@@ -18,7 +18,7 @@ const NewUser:React.FC<Props> = props =>{
 
 
     return (
-        <div className="profilPage">
+        <div className={props.reverse?"profilPage reverse":"profilPage"}>
             <h1>NewUser</h1>
             <form action="">
                 <input type="text" name="name" className="form" id="formNewUserName" placeholder="name"/>

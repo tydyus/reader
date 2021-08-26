@@ -1,0 +1,17 @@
+@mixin profilVignette($bg,$bgSecondaire,$text,$textSecondaire) {
+    .log{ 
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 75vh;
+        max-width: 65vw;
+        .profilVignette{
+            .infoProfilVignette{
+                > * {
+                    display: inline-block;
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+

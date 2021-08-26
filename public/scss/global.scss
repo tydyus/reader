@@ -1,6 +1,7 @@
 @import "./components/previewNovel";
 @import "./components/form";
 @import "./components/burger";
+@import "./components/profilVignette";
 
 //clean
 body{margin: 0;}            
@@ -12,15 +13,15 @@ body{margin: 0;}
         margin: 0;      
         min-height: 100vw;      
         overflow-x: hidden;  
-        overflow-y: auto;   
-    }      
+        overflow-y: auto;    
+    }         
     .container {
         background: $bgSecondaire; 
-        position: relative;
-        margin:1% 20% 1% 20%;
-        @media screen and (max-width: 600px) {
+        position: relative; 
+        margin:1% 20% 1% 20%; 
+        @media screen and (max-width: 600px) { 
             margin:0;
-        }
+        } 
         border-radius: 1vh;
         padding:2%;  
         min-height: 98vh;
@@ -29,12 +30,13 @@ body{margin: 0;}
     @include previewNovel($bg,$bgSecondaire,$text,$textSecondaire);
     @include form($bg,$bgSecondaire,$text,$textSecondaire);
     @include burger($bg,$bgSecondaire,$text,$textSecondaire);
+    @include profilVignette($bg,$bgSecondaire,$text,$textSecondaire);
 } 
- 
-//color
-
-//lightTheme
-#themeInput ~ *{
+    
+//color         
+   
+//lightTheme 
+#themeInput ~ *{ 
     $Lbg : rgb(243, 243, 243);
     $LbgSecondaire : rgb(255, 255, 255); 
     // $Ltext: rgb(2, 2, 2);
@@ -48,25 +50,26 @@ body{margin: 0;}
     $Dbg : rgb(2, 2, 2);      
     $DbgSecondaire : rgb(15, 15, 15);
     // $Dtext: rgb(236, 236, 236); 
-    // $DtextSecondaire : rgb(255, 255, 255); 
+    // $DtextSecondaire : rgb(255, 255, 255);  
     $Dtext: rgb(250, 128, 46); 
     $DtextSecondaire : rgb(255, 255, 255); 
     @include designColor($Dbg,$DbgSecondaire,$Dtext,$DtextSecondaire); 
 }       
-        
+         
 #themeInput, #themeInputdeco{
     cursor: pointer;
     position: fixed;
     bottom: 5px;
+    @media screen and (max-width: 600px){bottom: 2em;}
     right: 5px;
-    height: 30px;
-    width: 30px;
-    margin:0;
+    height: 30px; 
+    width: 30px;  
+    margin:0;   
     padding:0;
     border-radius: 100%;
     z-index: 9;
     background-color: black; 
-    &[type = "checkbox"] {
+    &[type = "checkbox"] { 
         z-index: 10;
         opacity: 0;
         &:checked ~ #themeInputdeco{background-color: white;}

@@ -4,15 +4,19 @@ import Footer from "./footer.layout";
 import Nav from "./nav.layout";
 import {Fragment} from "react";
 import {User, IUser} from "../../class/User.class"
+import { useRouter } from "next/router";
 
 type Props = {children: JSX.Element}
 
 const Layout:React.FC<Props> = props =>{
-    const updateUser = (user:"token"|"end" = "token")=>{
+    const router = useRouter();
+    const updateUser = async (user:"token"|"end" = "token")=>{
         if(user == "token")
         {setUser(User.is())}
         else {setUser(false);User.makeCookieToken(false)}
+        router.push("/");
     }
+
     const [user, setUser] = useState(User.is());
     useEffect(() => {
         User.setActualUser().then(_ => setUser(User.is()))
